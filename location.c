@@ -22,10 +22,8 @@ void location(char **args)
 				args[0] = path;
 				if (chdir(pwd) == 0)
 					return;
-				else
-					perror("Error change directories");
+				perror("Error change directories");
 			}
 		}
 	}
-	return;
 }

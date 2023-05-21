@@ -26,6 +26,8 @@ void runInteractiveMode(char *progName, char **envp)
 			break;
 
 		prompt[chars_written - 1] = '\0';
+		handleExit(prompt, args);
+
 		token = strtok(prompt, delim);
 		while (token != NULL)
 		{
@@ -64,6 +66,8 @@ void runNonInteractiveMode(char *progName, char **envp)
 	chars_written = getline(&prompt, &len, stdin);
 
 	prompt[chars_written - 1] = '\0';
+	handleExit(prompt, args);
+
 	token = strtok(prompt, delim);
 	while (token != NULL)
 	{
