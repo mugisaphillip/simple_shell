@@ -12,6 +12,7 @@ void execute(char *progName, char **args, char **envp)
 	pid_t child_pid;
 	int status;
 
+	location(args);
 	child_pid = fork();
 	if (child_pid < 0)
 	{

@@ -62,8 +62,6 @@ void runNonInteractiveMode(char *progName, char **envp)
 
 	args = malloc(sizeof(char *) * MAXWORDS);
 	chars_written = getline(&prompt, &len, stdin);
-	if (chars_written == -1)
-		break;
 
 	prompt[chars_written - 1] = '\0';
 	token = strtok(prompt, delim);
