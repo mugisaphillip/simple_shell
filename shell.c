@@ -2,24 +2,24 @@
 
 /**
  * runProgram - runs program
- * @prompt: command entered
+ * @pmt: command entered
  * @args: command argument
  * @envp: env variables
- * @chars_written: characters written
- * @progName: program name
+ * @w_len: characters written
+ * @pgNm: program name
  * Return: void
  */
-void runProgram(char *prompt, char **args, char **envp, ssize_t chars_written, char *progName)
+void runProgram(char *pmt, char **args, char **envp, ssize_t w_len, char *pgNm)
 {
 	char *token = NULL;
 	int n_tokens = 0;
 	char delim[] = " ";
 	int i = 0;
 
-	prompt[chars_written - 1] = '\0';
-	handleExit(prompt, args);
+	pmt[w_len - 1] = '\0';
+	handleExit(pmt, args);
 
-	if (strcmp(prompt, "env") == 0)
+	if (strcmp(pmt, "env") == 0)
 	{
 		while (envp[i] != NULL)
 		{
@@ -29,7 +29,7 @@ void runProgram(char *prompt, char **args, char **envp, ssize_t chars_written, c
 		}
 	}
 
-	token = strtok(prompt, delim);
+	token = strtok(pmt, delim);
 	while (token != NULL)
 	{
 		args[n_tokens] = token;
@@ -38,7 +38,7 @@ void runProgram(char *prompt, char **args, char **envp, ssize_t chars_written, c
 	}
 	args[n_tokens] = NULL;
 	if (n_tokens > 0)
-		execute(progName, args, envp);
+		execute(pgNm, args, envp);
 	n_tokens = 0;
 }
 
@@ -60,7 +60,7 @@ void runInteractiveMode(char *progName, char **envp)
 	while (1)
 	{
 		_puts("#cisfun$ ");
-		chars_written = getline(&prompt, &len, stdin);
+		chars_written = _getline(&prompt, &len);
 		if (chars_written == -1)
 			break;
 		runProgram(prompt, args, envp, chars_written, progName);

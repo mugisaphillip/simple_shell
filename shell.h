@@ -13,5 +13,6 @@ void _puts(char *str);
 void execute(char *progName, char **args, char **envp);
 void location(char **args);
 void handleExit(char *prompt, char **args);
+ssize_t _getline(char **lineptr, size_t *n);
 
 #endif

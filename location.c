@@ -7,7 +7,9 @@
 
 void location(char **args)
 {
-	char pwd[1024], path[1024];
+	static int path_size = 1024;
+	char pwd[1024];
+	char *path = malloc(sizeof(char) * path_size);
 	char delim[2] = "/";
 
 	if (access(args[0], F_OK) == -1)
@@ -15,10 +17,11 @@ void location(char **args)
 		getcwd(pwd, sizeof(pwd));
 		if (chdir("/bin/") == 0)
 		{
-			if (getcwd(path, sizeof(path)) != NULL)
+			if (getcwd(path, path_size) != NULL)
 			{
 				strcat(path, delim);
 				strcat(path, args[0]);
+				path[strlen(path) + 1] = '\0';
 				args[0] = path;
 				if (chdir(pwd) == 0)
 					return;
