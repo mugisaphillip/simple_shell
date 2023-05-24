@@ -16,5 +16,6 @@ void handleExit(char *prompt, char **args);
 ssize_t _getline(char **lineptr, size_t *n);
 int _atoi(char *s);
 int handleChangeDir(char **args);
+int handleEnvs(char **args);
 
 #endif

@@ -40,6 +40,8 @@ void runProgram(char *pmt, char **args, char **envp, ssize_t w_len, char *pgNm)
 		handleExit(pmt, args);
 		if (handleChangeDir(args) == 1)
 			return;
+		if (handleEnvs(args) == 1)
+			return;
 		execute(pgNm, args, envp);
 	}
 	n_tokens = 0;
