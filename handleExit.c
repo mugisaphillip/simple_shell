@@ -11,8 +11,8 @@ void handleExit(char *prompt, char **args)
 
 	if (strcmp(prompt, "exit") != 0)
 		return;
-
+	
 	free(args);
 	free(prompt);
-	_exit(0);
+	_exit(_atoi(args[1]));
 }

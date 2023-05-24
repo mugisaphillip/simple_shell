@@ -17,14 +17,12 @@ void runProgram(char *pmt, char **args, char **envp, ssize_t w_len, char *pgNm)
 	int i = 0;
 
 	pmt[w_len - 1] = '\0';
-	handleExit(pmt, args);
 
 	if (strcmp(pmt, "env") == 0)
 	{
 		while (envp[i] != NULL)
 		{
-			_puts(envp[i]);
-			_putchar('\n');
+			printf("%s\n", envp[i]);
 			i++;
 		}
 	}
@@ -38,7 +36,10 @@ void runProgram(char *pmt, char **args, char **envp, ssize_t w_len, char *pgNm)
 	}
 	args[n_tokens] = NULL;
 	if (n_tokens > 0)
+	{
+		handleExit(pmt, args);
 		execute(pgNm, args, envp);
+	}
 	n_tokens = 0;
 }
 
@@ -85,7 +86,7 @@ void runNonInteractiveMode(char *progName, char **envp)
 	char **args;
 
 	args = malloc(sizeof(char *) * MAXWORDS);
-	chars_written = getline(&prompt, &len, stdin);
+	chars_written = _getline(&prompt, &len);
 
 	runProgram(prompt, args, envp, chars_written, progName);
 
