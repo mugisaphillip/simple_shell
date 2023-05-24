@@ -9,7 +9,6 @@
 
 void execute(char *progName, char **args, char **envp)
 {
-	char *path = NULL;
 	pid_t child_pid;
 	int status;
 
@@ -22,14 +21,14 @@ void execute(char *progName, char **args, char **envp)
 
 	if (child_pid == 0)
 	{
-		location(path, args);
+		location(args);
 		if (execve(args[0], args, envp) == -1)
 		{
-			free(path);
+			free(args[0]);
 			perror(progName);
 			exit(EXIT_FAILURE);
 		}
-		free(path);
+		free(args[0]);
 	}
 	else
 		wait(&status);

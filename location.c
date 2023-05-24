@@ -6,13 +6,12 @@
  * Return: void
  */
 
-void location(char *path, char **args)
+void location(char **args)
 {
 	static int path_size = 1024;
 	char pwd[1024];
 	char delim[2] = "/";
-
-	path = malloc(sizeof(char) * path_size);
+	char *path = malloc(sizeof(char) * path_size);
 
 	if (access(args[0], F_OK) == -1)
 	{
