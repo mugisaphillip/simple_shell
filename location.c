@@ -1,16 +1,18 @@
 #include "shell.h"
 /**
  * location - modifies path to program
+ * @path: path
  * @args: command arguments
  * Return: void
  */
 
-void location(char **args)
+void location(char *path, char **args)
 {
 	static int path_size = 1024;
 	char pwd[1024];
-	char *path = malloc(sizeof(char) * path_size);
 	char delim[2] = "/";
+
+	path = malloc(sizeof(char) * path_size);
 
 	if (access(args[0], F_OK) == -1)
 	{
@@ -24,7 +26,9 @@ void location(char **args)
 				path[strlen(path) + 1] = '\0';
 				args[0] = path;
 				if (chdir(pwd) == 0)
+				{
 					return;
+				}
 				perror("Error change directories");
 			}
 		}

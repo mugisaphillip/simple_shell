@@ -8,11 +8,15 @@
 
 void handleExit(char *prompt, char **args)
 {
+	int status = 0;
 
 	if (strcmp(prompt, "exit") != 0)
 		return;
-	
-	free(args);
+
+	if (args[1])
+		status = _atoi(args[1]);
+		
 	free(prompt);
-	_exit(_atoi(args[1]));
+	free(args);
+	exit(status);
 }
