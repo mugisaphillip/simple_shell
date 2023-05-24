@@ -1,7 +1,6 @@
 #include "shell.h"
 /**
  * location - modifies path to program
- * @path: path
  * @args: command arguments
  * Return: void
  */

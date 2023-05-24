@@ -15,7 +15,6 @@ void handleExit(char *prompt, char **args)
 
 	if (args[1])
 		status = _atoi(args[1]);
-		
 	free(prompt);
 	free(args);
 	exit(status);
