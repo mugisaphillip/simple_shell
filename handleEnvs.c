@@ -15,19 +15,17 @@ int handleEnvs(char **args)
 		{
 			perror("few arguments placed");
 		}
-		if (setenv(args[1], args[2], 1) != 0)
+		else if (setenv(args[1], args[2], 1) != 0)
 			perror("variable not set");
-		else
-			status = 1;
+		status = 1;
 	}
 	else if (strcmp(args[0], "unsetenv") == 0)
 	{
 		if (args[1] == NULL)
 			perror("few arguments placed");
-		if (unsetenv(args[1]) != 0)
+		else if (unsetenv(args[1]) != 0)
 			perror("variable not unset");
-		else
-			status = 1;
+		status = 1;
 	}
 	return (status);
 }
